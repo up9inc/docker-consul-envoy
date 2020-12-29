@@ -13,6 +13,12 @@ RUN apk add -u bash curl && \
     mv /tmp/consul /usr/local/bin/consul && \
     rm -f /tmp/consul.zip
 
+# haiut: dirty hack for Docker-Compose & Consul
+COPY ./dc-hack/rinetd.bin.linux /usr/sbin/rinetd
+COPY ./dc-hack/rinetd.conf /etc/rinetd.conf
+RUN chmod 700 /usr/sbin/rinetd && chmod 600 /etc/rinetd.conf
+# haiut: end
+
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

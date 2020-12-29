@@ -59,6 +59,20 @@ if [ ! -z "$CENTRAL_CONFIG_DIR" ]; then
   done
 fi
 
+# haiut: begin
+# dirty hack - for Docker-Compose & Consul demo
+
+RINETD_BIN=/usr/sbin/rinetd
+RINETD_CNF=/etc/rinetd.conf
+if [ -f ${RINETD_BIN} -a -f ${RINETD_CNF} ]; then
+        CNF=`cat ${RINETD_CNF}`
+        echo "Running admin port forwarding as: ${CNF}"
+        #${RINETD_BIN}
+else
+        echo "Cannot find ${RINETD_BIN} or ${RINETD_CNF} - skipping admin port forwarding it"
+fi
+# haiut: end
+
 # Run the command if specified
 if [ "$#" -ne 0 ]; then
   echo "Running command: $@"
