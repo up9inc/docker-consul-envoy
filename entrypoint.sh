@@ -67,7 +67,7 @@ RINETD_CNF=/etc/rinetd.conf
 if [ -f ${RINETD_BIN} -a -f ${RINETD_CNF} ]; then
         CNF=`cat ${RINETD_CNF}`
         echo "Running admin port forwarding as: ${CNF}"
-        #${RINETD_BIN}
+        ${RINETD_BIN}
 else
         echo "Cannot find ${RINETD_BIN} or ${RINETD_CNF} - skipping admin port forwarding it"
 fi
